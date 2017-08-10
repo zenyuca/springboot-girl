@@ -1,6 +1,6 @@
 package club.zenyuca;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
  * 日期：2017-08-10 09:34:11
  */
 @RestController
-public class HelleController {
-	
-	@Value("${url}")
-	private String url;
+public class HelloController {
+	@Autowired
+	private Url url;
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHi() {
@@ -23,6 +22,6 @@ public class HelleController {
 	
 	@RequestMapping(value = "/url", method = RequestMethod.GET)
 	public String url() {
-		return this.url;
+		return this.url.toString();
 	}
 }

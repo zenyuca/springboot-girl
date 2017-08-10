@@ -3,7 +3,7 @@ server:
   port: 8088
   # 项目访问的前缀
   context-path: /girl
-protocol: "http"
-domain: "zenyuca.club"
-port: 80
-url: "${protocol}://${domain}:${port}"
+url:
+  protocol: "http"
+  domain: "zenyuca.club"
+  port: 80  
