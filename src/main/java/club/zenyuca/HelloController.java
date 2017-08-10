@@ -23,7 +23,8 @@ public class HelloController {
 	@Autowired
 	private Url url;
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	// /hello 和 /hi 都能映射到 sayHi 方法
+	@RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)
 	public String sayHi() {
 		return "Hello Spring Boot!";
 	}
