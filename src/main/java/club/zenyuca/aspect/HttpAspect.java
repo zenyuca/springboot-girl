@@ -1,7 +1,9 @@
 package club.zenyuca.aspect;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,8 +15,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class HttpAspect {
 
-	@Before(value = "execution(public * club.zenyuca.controller.GirlController.*(..))")
+	@Pointcut(value = "execution(public * club.zenyuca.controller.GirlController.*(..))")
 	public void log() {
-		System.out.println("log123");
+	}
+
+	@Before("log()")
+	public void doBefore() {
+		System.out.println("我来了");
+	}
+
+	@After("log()")
+	public void doAfter() {
+		System.out.println("我走了");
 	}
 }
