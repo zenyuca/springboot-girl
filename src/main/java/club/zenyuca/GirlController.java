@@ -20,6 +20,8 @@ public class GirlController {
 
 	@Autowired
 	private GirlRepository girlRepository;
+	@Autowired
+	private GirlService girlService;
 
 	@GetMapping(value = "/girls")
 	public List<Girl> girls() {
@@ -62,5 +64,10 @@ public class GirlController {
 	@GetMapping(value = "/girl/age/{age}")
 	public List<Girl> getByAge(@PathVariable(value = "age") Integer age) {
 		return this.girlRepository.getByAge(age);
+	}
+
+	@PostMapping(value = "/girl/insertTwo")
+	public void insertTow() {
+		this.girlService.insertTwo();
 	}
 }
