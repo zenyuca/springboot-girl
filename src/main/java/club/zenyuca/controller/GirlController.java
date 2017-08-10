@@ -2,7 +2,10 @@ package club.zenyuca.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,13 +35,18 @@ public class GirlController {
 		return this.girlRepository.findAll();
 	}
 
+	/**
+	 * @param girl	参数接收对象
+	 * @param bindingResult	验证消息返回对象
+	 * @return	返回给客户端的消息
+	 */
 	@PostMapping(value = "/girl")
-	public Girl addGril(
-			@RequestParam(value = "name") String name, 
-			@RequestParam(value = "age") Integer age) {
-		Girl girl = new Girl();
-		girl.setAge(age);
-		girl.setName(name);
+	public Object addGril(@Valid Girl girl, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			// 如果有错误的，则返回错误信息回去。
+			String err = bindingResult.getFieldError().getDefaultMessage();
+			return err;
+		}
 		return this.girlRepository.save(girl);
 	}
 
