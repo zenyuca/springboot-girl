@@ -1,0 +1,5 @@
+server:
+  # 启动端口号
+  port: 8088
+  # 项目访问的前缀
+  context-path: /girl
