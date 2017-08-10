@@ -1,4 +1,4 @@
-package club.zenyuca;
+package club.zenyuca.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
