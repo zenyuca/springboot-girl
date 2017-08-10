@@ -3,3 +3,4 @@ server:
   port: 8088
   # 项目访问的前缀
   context-path: /girl
+url: zenyuca.club
