@@ -1,6 +1,7 @@
 package club.zenyuca.handle;
 
 import club.zenyuca.entity.Result;
+import club.zenyuca.enums.ResultEnum;
 import club.zenyuca.exception.GirlException;
 import club.zenyuca.util.ResultUtil;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public class ExceptionHandle {
             return ResultUtil.error(girlException.getCode(), girlException.getMessage());
         } else {
             logger.error("[异常信息] = {}", e.getMessage());
-            return ResultUtil.error(-1, "未知错误！");
+            return ResultUtil.error(ResultEnum.UNKNOW_ERROR.getCode(), ResultEnum.UNKNOW_ERROR.getMsg());
         }
     }
 }

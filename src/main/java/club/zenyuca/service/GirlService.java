@@ -2,6 +2,7 @@ package club.zenyuca.service;
 
 import javax.transaction.Transactional;
 
+import club.zenyuca.enums.ResultEnum;
 import club.zenyuca.exception.GirlException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,9 @@ public class GirlService {
 
 	public void getAge(Integer age) throws GirlException {
 		if (age < 13) {
-			throw new GirlException(100, "禁止小学生入内");
+			throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
 		} else if (age < 18) {
-			throw new GirlException(101, "未成年还是不得入内");
+			throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
 		}
 	}
 }
