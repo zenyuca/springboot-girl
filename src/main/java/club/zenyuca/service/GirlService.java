@@ -2,6 +2,7 @@ package club.zenyuca.service;
 
 import javax.transaction.Transactional;
 
+import club.zenyuca.exception.GirlException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,13 @@ public class GirlService {
 		b.setAge(19);
 		b.setName("宋佳佳");
 		this.girlRepository.save(b);
+	}
+
+	public void getAge(Integer age) throws GirlException {
+		if (age < 13) {
+			throw new GirlException(100, "禁止小学生入内");
+		} else if (age < 18) {
+			throw new GirlException(101, "未成年还是不得入内");
+		}
 	}
 }
