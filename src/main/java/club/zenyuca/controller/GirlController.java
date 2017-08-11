@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import club.zenyuca.entity.Result;
+import club.zenyuca.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,13 +43,12 @@ public class GirlController {
 	 * @return	返回给客户端的消息
 	 */
 	@PostMapping(value = "/girl")
-	public Object addGril(@Valid Girl girl, BindingResult bindingResult) {
+	public Result<Girl> addGril(@Valid Girl girl, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			// 如果有错误的，则返回错误信息回去。
 			String err = bindingResult.getFieldError().getDefaultMessage();
-			return err;
+			return ResultUtil.error(1, err);
 		}
-		return this.girlRepository.save(girl);
+		return ResultUtil.success(this.girlRepository.save(girl));
 	}
 
 	@DeleteMapping(value = "/girl/{id}")
